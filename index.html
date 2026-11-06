@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BRAVO ENGLISH 복습 퀴즈</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Gaegu:wght@700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#f6f3ec;background-image:linear-gradient(#ebe6da 1px,transparent 1px),linear-gradient(90deg,#ebe6da 1px,transparent 1px);
+ background-size:28px 28px;font-family:'Inter','Pretendard',sans-serif;color:#2c3a2e;min-height:100vh}
+.wrap{max-width:480px;margin:0 auto;padding:20px 18px 60px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.pill{background:#356b45;color:#fff;font-weight:800;font-size:13px;letter-spacing:2px;padding:7px 14px;border-radius:20px}
+.prog{font-family:'Pretendard';font-weight:700;font-size:13px;color:#6c6f62}
+h1{font-family:'Pretendard';font-weight:900;font-size:27px;letter-spacing:-.5px;margin:18px 0 4px;line-height:1.25}
+.hand{font-family:'Gaegu',cursive;font-weight:700;color:#c0392b;font-size:20px}
+.tabs{display:flex;gap:6px;margin:18px 0 14px;position:sticky;top:0;padding:8px 0;background:#f6f3ec;z-index:5}
+.tab{flex:1;border:none;background:#fff;border-radius:14px;padding:10px 4px;font-family:'Pretendard';font-weight:700;font-size:14px;color:#6c6f62;cursor:pointer;position:relative}
+.tab.on{background:#356b45;color:#fff}
+.tab .ok{position:absolute;top:-6px;right:-4px;background:#c9e8cf;color:#2f6b40;border-radius:10px;font-size:11px;padding:1px 6px;display:none}
+.tab.done .ok{display:block}
+.pane{display:none}.pane.on{display:block}
+.guide{font-family:'Pretendard';font-size:14px;color:#6c6f62;margin-bottom:12px}
+.card{background:#fff;border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.tag{font-family:'Pretendard';font-weight:700;font-size:13px;color:#6c6f62;display:flex;gap:8px;align-items:center}
+.tag b{background:#356b45;color:#fff;border-radius:10px;padding:2px 9px;font-size:12px}
+.sent{font-size:20px;font-weight:600;margin:12px 0 4px;line-height:1.35}
+.sent .bl{display:inline-block;min-width:80px;border-bottom:3px solid #356b45;text-align:center;color:#2f6b40;font-weight:800}
+.ko{font-family:'Pretendard';font-size:13px;color:#7a7b70}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.opt{border:2px solid #e4e0d4;background:#fbfaf6;border-radius:14px;padding:11px 14px;font-size:16px;font-weight:600;text-align:left;cursor:pointer;color:#2c3a2e;font-family:'Inter','Pretendard'}
+.opt.right{border-color:#356b45;background:#c9e8cf}
+.opt.wrong{border-color:#c0392b;background:#f8d9cf}
+.opt:disabled{cursor:default}
+.fb{font-family:'Pretendard';font-size:14px;margin-top:10px;display:none;line-height:1.5}
+.fb.show{display:block}
+.play{border:none;background:#356b45;color:#fff;border-radius:50%;width:34px;height:34px;font-size:14px;cursor:pointer;flex:none}
+.bubble{display:flex;gap:10px;align-items:flex-start;margin-top:12px}
+.av{flex:none;width:40px;height:40px;border-radius:50%;background:#f8d9cf;font-family:'Pretendard';font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+.bub{background:#f6f3ec;border-radius:4px 16px 16px 16px;padding:10px 14px;font-size:17px;font-weight:600;flex:1}
+.bub .ko{margin-top:4px;font-weight:400}
+.reply-label{font-family:'Pretendard';font-weight:700;font-size:13px;color:#2f6b40;margin-top:14px}
+.flip{perspective:1000px;height:200px;cursor:pointer;margin-bottom:10px}
+.inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.flip.open .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
+.face.back{transform:rotateY(180deg);background:#356b45;color:#fff}
+.face .big{font-family:'Pretendard';font-weight:900;font-size:28px}
+.face.back .big{font-family:'Inter';font-weight:800;font-size:30px}
+.face .small{font-size:14px;margin-top:10px;opacity:.8}
+.face .hint{font-family:'Gaegu';font-size:17px;color:#c0392b;margin-top:14px}
+.rate{display:flex;gap:8px;margin-bottom:22px}
+.rate button{flex:1;border:2px solid #e4e0d4;background:#fff;border-radius:14px;padding:10px;font-family:'Pretendard';font-weight:700;font-size:15px;cursor:pointer;color:#2c3a2e}
+.rate .got.sel{background:#c9e8cf;border-color:#356b45}
+.rate .unsure.sel{background:#fbe8b6;border-color:#d9a400}
+.retry{width:100%;border:none;background:#fff;border-radius:14px;padding:12px;font-family:'Pretendard';font-weight:700;font-size:14px;color:#356b45;cursor:pointer;margin-top:4px}
+.back{display:inline-block;margin-bottom:14px;font-family:'Pretendard';font-weight:700;font-size:14px;color:#356b45;text-decoration:none}
+.result{display:none;margin-top:26px;background:#2f3a2e;color:#fff;border-radius:24px;padding:26px 20px;text-align:center}
+.result.show{display:block}
+.result .pill{display:inline-block;margin-bottom:14px}
+.result .score{font-family:'Pretendard';font-weight:900;font-size:40px;margin:6px 0}
+.result .exprs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.result .exprs span{background:#fff;color:#2c3a2e;border-radius:12px;padding:5px 11px;font-weight:700;font-size:14px}
+.result .hand{color:#c9e8cf;font-size:22px}
+.result .share{font-family:'Pretendard';font-size:13px;opacity:.75;margin-top:14px;line-height:1.5}
+
+.set{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:20px;padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.set .row1{display:flex;justify-content:space-between;align-items:center;font-family:'Pretendard';font-size:13px;color:#6c6f62;font-weight:700}
+.set .st{font-size:12px;border-radius:10px;padding:2px 9px;background:#f6f3ec}
+.set .st.done{background:#c9e8cf;color:#2f6b40}.set .st.unsure{background:#fbe8b6;color:#8a6a00}
+.set .t{font-family:'Pretendard';font-weight:800;font-size:18px;margin:6px 0 8px}
+.set .ex{display:flex;gap:6px;flex-wrap:wrap}.set .ex span{background:#f6f3ec;border-radius:10px;padding:3px 9px;font-size:13px;font-weight:600}
+.new{background:#c0392b;color:#fff;border-radius:8px;padding:1px 7px;font-size:11px;margin-left:6px}
+.mix{width:100%;border:none;background:#356b45;color:#fff;border-radius:18px;padding:15px;font-family:'Pretendard';font-weight:800;font-size:16px;cursor:pointer;margin:16px 0 22px}
+.mixbox{display:none}.mixbox.show{display:block}
+.sec{font-family:'Pretendard';font-weight:800;font-size:15px;margin:6px 0 10px;color:#6c6f62}
+</style></head><body><div class="wrap">
+<div class="top"><div class="pill">BRAVO ENGLISH</div><div class="prog">4세트 · 표현 12개</div></div>
+<h1>직장인 생존영어<br>복습 퀴즈 모음</h1><div class="hand">배운 표현, 진짜 외웠는지 확인!</div>
+<button class="mix" id="mixbtn">🔀 지금까지 배운 표현 랜덤 복습</button>
+<div class="mixbox" id="mixbox"></div>
+<div class="sec">세트별 퀴즈</div><div id="list"></div>
+</div><script>window.SETS=[{"file": "2026-11-08-k.html", "date": "2026-11-08", "id": "K_미국중간선거", "title": "미국 중간선거 뉴스 영어, 회사에서 써먹기", "cards": [{"expr": "landslide", "mean": "압승, 압도적인 결과", "example": "It was a landslide.", "when": "투표·결과가 한쪽으로 쏠릴 때"}, {"expr": "flip", "mean": "뒤집다, 이쪽으로 가져오다", "example": "They flipped seven seats.", "when": "상대 걸 가져왔을 때"}, {"expr": "sweep", "mean": "싹쓸이하다", "example": "They swept the election.", "when": "전부 다 이겼을 때"}]}, {"file": "2026-11-06-c.html", "date": "2026-11-06", "id": "C_업무부탁", "title": "일 부탁할 때 이렇게 말하면 다 도와줘요", "cards": [{"expr": "give me a hand", "mean": "좀 도와주다", "example": "Could you give me a hand?", "when": "가볍게 도움 청할 때"}, {"expr": "Would you mind ~ing?", "mean": "~해주실 수 있을까요?", "example": "Would you mind checking this?", "when": "정중하게 부탁할 때"}, {"expr": "I'd appreciate it if ~", "mean": "~해주시면 감사하겠어요", "example": "I'd appreciate it if you could…", "when": "메일로 공손하게"}]}, {"file": "2026-11-03-b.html", "date": "2026-11-03", "id": "B_회의반대", "title": "회의에서 반대할 때 쓰는 영어", "cards": [{"expr": "push back", "mean": "정중하게 이의를 제기하다", "example": "I'd like to push back a little.", "when": "회의에서 반대할 때"}, {"expr": "play devil's advocate", "mean": "일부러 반대 입장에서 말하다", "example": "Let me play devil's advocate.", "when": "리스크를 짚을 때"}, {"expr": "see your point", "mean": "무슨 말인지 알다 (인정하고 반대)", "example": "I see your point, but…", "when": "부드럽게 반대할 때"}]}, {"file": "2026-11-03-a.html", "date": "2026-11-03", "id": "A_마감독촉", "title": "마감 독촉, 영어로 하면 안 싸워요", "cards": [{"expr": "check in on", "mean": "진행 상황을 확인하다", "example": "Just checking in on the report.", "when": "부담 없이 진행 상황 물을 때"}, {"expr": "friendly reminder", "mean": "가볍게 다시 알려드림", "example": "Just a friendly reminder.", "when": "마감 전 부드럽게 알릴 때"}, {"expr": "follow up on", "mean": "다시 확인하다, 후속 연락하다", "example": "I wanted to follow up on this.", "when": "답이 없을 때"}]}];</script><script>
+const SETS = window.SETS;
+const get = id => JSON.parse(localStorage.getItem('bravo_quiz_' + id) || '{}');
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+document.getElementById('list').innerHTML = SETS.map((s, i) => {
+  const g = get(s.id), cards = g.cards || {};
+  const unsure = s.cards.some(c => cards[c.expr] === 'unsure');
+  const st = g.done ? (unsure ? ['unsure', '헷갈림 있음 🤔'] : ['done', `완료 ${g.done.right}/${g.done.total} ✅`]) : ['', '아직 안 풂'];
+  return `<a class="set" href="${s.file}"><div class="row1"><span>${s.date}${i === 0 ? '<span class="new">NEW</span>' : ''}</span>
+    <span class="st ${st[0]}">${st[1]}</span></div><div class="t">${esc(s.title)}</div>
+    <div class="ex">${s.cards.map(c => `<span>${esc(c.expr)}</span>`).join('')}</div></a>`;
+}).join('');
+
+function mix() {
+  const all = SETS.flatMap(s => s.cards.map(c => ({...c, id: s.id})));
+  const pick = all.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).slice(0, 10).map(v => v[1]);
+  const box = document.getElementById('mixbox');
+  box.innerHTML = '<div class="sec">랜덤 복습 ' + pick.length + '장 · 탭해서 뒤집기</div>' + pick.map(c => {
+    const r = (get(c.id).cards || {})[c.expr];
+    return `<div class="flip"><div class="inner">
+      <div class="face"><div class="big">${esc(c.mean)}</div><div class="small">${esc(c.when)}</div><div class="hint">탭해서 뒤집기</div></div>
+      <div class="face back"><div class="big">${esc(c.expr)}</div><div class="small">${esc(c.example)}</div></div></div></div>
+      <div class="rate" data-id="${c.id}" data-expr="${esc(c.expr)}">
+      <button class="got ${r === 'got' ? 'sel' : ''}">외웠음 ✅</button><button class="unsure ${r === 'unsure' ? 'sel' : ''}">헷갈림 🤔</button></div>`;
+  }).join('');
+  box.classList.add('show');
+  box.scrollIntoView({behavior: 'smooth'});
+}
+document.getElementById('mixbtn').onclick = mix;
+document.addEventListener('click', e => {
+  const f = e.target.closest('.flip'); if (f) return f.classList.toggle('open');
+  const r = e.target.closest('.rate');
+  if (r && e.target.tagName === 'BUTTON') {
+    const key = 'bravo_quiz_' + r.dataset.id, g = get(r.dataset.id);
+    g.cards = g.cards || {}; g.cards[r.dataset.expr] = e.target.classList.contains('got') ? 'got' : 'unsure';
+    localStorage.setItem(key, JSON.stringify(g));
+    r.querySelectorAll('button').forEach(b => b.classList.toggle('sel', b === e.target));
+  }
+});
+</script></body></html>
