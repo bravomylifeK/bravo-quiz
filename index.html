@@ -1,120 +1,289 @@
 <!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BRAVO ENGLISH 복습 퀴즈</title><style>
+<meta name="description" content="인스타 직장인 생존영어 표현 예습·복습·테스트">
+<title>BRAVO ENGLISH · 직장인 생존영어 예습·복습·테스트</title><style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Gaegu:wght@700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#f6f3ec;background-image:linear-gradient(#ebe6da 1px,transparent 1px),linear-gradient(90deg,#ebe6da 1px,transparent 1px);
  background-size:28px 28px;font-family:'Inter','Pretendard',sans-serif;color:#2c3a2e;min-height:100vh}
-.wrap{max-width:480px;margin:0 auto;padding:20px 18px 60px}
-.top{display:flex;justify-content:space-between;align-items:center}
-.pill{background:#356b45;color:#fff;font-weight:800;font-size:13px;letter-spacing:2px;padding:7px 14px;border-radius:20px}
-.prog{font-family:'Pretendard';font-weight:700;font-size:13px;color:#6c6f62}
-h1{font-family:'Pretendard';font-weight:900;font-size:27px;letter-spacing:-.5px;margin:18px 0 4px;line-height:1.25}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:480px;margin:0 auto;padding:20px 18px 70px}
+.top{display:flex;justify-content:space-between;align-items:center;min-height:34px}
+.pill{background:#356b45;color:#fff;font-weight:800;font-size:13px;letter-spacing:2px;padding:7px 14px;border-radius:20px;text-decoration:none}
+.meta{font-family:'Pretendard';font-weight:700;font-size:13px;color:#6c6f62}
+.back{font-family:'Pretendard';font-weight:700;font-size:14px;color:#356b45;text-decoration:none;background:none;border:none;padding:0}
+h1{font-family:'Pretendard';font-weight:900;font-size:27px;letter-spacing:-.5px;margin:16px 0 4px;line-height:1.25}
 .hand{font-family:'Gaegu',cursive;font-weight:700;color:#c0392b;font-size:20px}
-.tabs{display:flex;gap:6px;margin:18px 0 14px;position:sticky;top:0;padding:8px 0;background:#f6f3ec;z-index:5}
-.tab{flex:1;border:none;background:#fff;border-radius:14px;padding:10px 4px;font-family:'Pretendard';font-weight:700;font-size:14px;color:#6c6f62;cursor:pointer;position:relative}
-.tab.on{background:#356b45;color:#fff}
-.tab .ok{position:absolute;top:-6px;right:-4px;background:#c9e8cf;color:#2f6b40;border-radius:10px;font-size:11px;padding:1px 6px;display:none}
-.tab.done .ok{display:block}
-.pane{display:none}.pane.on{display:block}
-.guide{font-family:'Pretendard';font-size:14px;color:#6c6f62;margin-bottom:12px}
-.card{background:#fff;border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.tag{font-family:'Pretendard';font-weight:700;font-size:13px;color:#6c6f62;display:flex;gap:8px;align-items:center}
-.tag b{background:#356b45;color:#fff;border-radius:10px;padding:2px 9px;font-size:12px}
-.sent{font-size:20px;font-weight:600;margin:12px 0 4px;line-height:1.35}
-.sent .bl{display:inline-block;min-width:80px;border-bottom:3px solid #356b45;text-align:center;color:#2f6b40;font-weight:800}
-.ko{font-family:'Pretendard';font-size:13px;color:#7a7b70}
-.opts{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-.opt{border:2px solid #e4e0d4;background:#fbfaf6;border-radius:14px;padding:11px 14px;font-size:16px;font-weight:600;text-align:left;cursor:pointer;color:#2c3a2e;font-family:'Inter','Pretendard'}
-.opt.right{border-color:#356b45;background:#c9e8cf}
-.opt.wrong{border-color:#c0392b;background:#f8d9cf}
-.opt:disabled{cursor:default}
-.fb{font-family:'Pretendard';font-size:14px;margin-top:10px;display:none;line-height:1.5}
-.fb.show{display:block}
-.play{border:none;background:#356b45;color:#fff;border-radius:50%;width:34px;height:34px;font-size:14px;cursor:pointer;flex:none}
-.bubble{display:flex;gap:10px;align-items:flex-start;margin-top:12px}
-.av{flex:none;width:40px;height:40px;border-radius:50%;background:#f8d9cf;font-family:'Pretendard';font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
-.bub{background:#f6f3ec;border-radius:4px 16px 16px 16px;padding:10px 14px;font-size:17px;font-weight:600;flex:1}
-.bub .ko{margin-top:4px;font-weight:400}
-.reply-label{font-family:'Pretendard';font-weight:700;font-size:13px;color:#2f6b40;margin-top:14px}
-.flip{perspective:1000px;height:200px;cursor:pointer;margin-bottom:10px}
-.inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
-.flip.open .inner{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
-.face.back{transform:rotateY(180deg);background:#356b45;color:#fff}
-.face .big{font-family:'Pretendard';font-weight:900;font-size:28px}
-.face.back .big{font-family:'Inter';font-weight:800;font-size:30px}
-.face .small{font-size:14px;margin-top:10px;opacity:.8}
-.face .hint{font-family:'Gaegu';font-size:17px;color:#c0392b;margin-top:14px}
-.rate{display:flex;gap:8px;margin-bottom:22px}
-.rate button{flex:1;border:2px solid #e4e0d4;background:#fff;border-radius:14px;padding:10px;font-family:'Pretendard';font-weight:700;font-size:15px;cursor:pointer;color:#2c3a2e}
-.rate .got.sel{background:#c9e8cf;border-color:#356b45}
-.rate .unsure.sel{background:#fbe8b6;border-color:#d9a400}
-.retry{width:100%;border:none;background:#fff;border-radius:14px;padding:12px;font-family:'Pretendard';font-weight:700;font-size:14px;color:#356b45;cursor:pointer;margin-top:4px}
-.back{display:inline-block;margin-bottom:14px;font-family:'Pretendard';font-weight:700;font-size:14px;color:#356b45;text-decoration:none}
-.result{display:none;margin-top:26px;background:#2f3a2e;color:#fff;border-radius:24px;padding:26px 20px;text-align:center}
-.result.show{display:block}
-.result .pill{display:inline-block;margin-bottom:14px}
-.result .score{font-family:'Pretendard';font-weight:900;font-size:40px;margin:6px 0}
-.result .exprs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px 0}
-.result .exprs span{background:#fff;color:#2c3a2e;border-radius:12px;padding:5px 11px;font-weight:700;font-size:14px}
-.result .hand{color:#c9e8cf;font-size:22px}
-.result .share{font-family:'Pretendard';font-size:13px;opacity:.75;margin-top:14px;line-height:1.5}
-
-.set{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:20px;padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.set .row1{display:flex;justify-content:space-between;align-items:center;font-family:'Pretendard';font-size:13px;color:#6c6f62;font-weight:700}
-.set .st{font-size:12px;border-radius:10px;padding:2px 9px;background:#f6f3ec}
-.set .st.done{background:#c9e8cf;color:#2f6b40}.set .st.unsure{background:#fbe8b6;color:#8a6a00}
+.ko,.sub{font-family:'Pretendard';font-size:13px;color:#7a7b70}
+.sec{font-family:'Pretendard';font-weight:800;font-size:15px;margin:22px 0 10px;color:#6c6f62}
+.card{background:#fff;border-radius:20px;padding:18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+/* 검색 */
+.search{position:relative;margin-top:16px}
+.search input{width:100%;border:2px solid #e4e0d4;background:#fff;border-radius:16px;padding:14px 16px 14px 44px;font-size:16px;font-family:'Inter','Pretendard';color:#2c3a2e;outline:none}
+.search input:focus{border-color:#356b45}
+.search .ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;opacity:.6}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{border:none;background:#fff;border-radius:12px;padding:6px 11px;font-size:13px;font-weight:600;color:#2c3a2e}
+.hit{display:block;width:100%;text-align:left;border:none;background:#fff;border-radius:16px;padding:14px 16px;margin-bottom:8px}
+.hit .e{font-weight:800;font-size:17px}.hit .m{font-family:'Pretendard';font-size:14px;margin-top:2px}
+.hit .s{font-family:'Pretendard';font-size:12px;color:#7a7b70;margin-top:6px}
+mark{background:#c9e8cf;color:inherit;border-radius:3px;padding:0 1px}
+.empty{font-family:'Pretendard';font-size:14px;color:#7a7b70;text-align:center;padding:18px}
+/* 홈 버튼 */
+.big2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.bigbtn{border:none;border-radius:18px;padding:16px 12px;text-align:left;background:#356b45;color:#fff}
+.bigbtn.alt{background:#2f3a2e}
+.bigbtn b{display:block;font-family:'Pretendard';font-weight:800;font-size:16px}
+.bigbtn span{font-family:'Pretendard';font-size:12px;opacity:.8}
+/* 세트 목록 */
+.set{display:block;width:100%;text-align:left;border:none;background:#fff;border-radius:20px;padding:16px 18px;margin-bottom:12px;color:inherit}
+.set .r1{display:flex;justify-content:space-between;align-items:center;font-family:'Pretendard';font-size:13px;color:#6c6f62;font-weight:700}
 .set .t{font-family:'Pretendard';font-weight:800;font-size:18px;margin:6px 0 8px}
 .set .ex{display:flex;gap:6px;flex-wrap:wrap}.set .ex span{background:#f6f3ec;border-radius:10px;padding:3px 9px;font-size:13px;font-weight:600}
 .new{background:#c0392b;color:#fff;border-radius:8px;padding:1px 7px;font-size:11px;margin-left:6px}
-.mix{width:100%;border:none;background:#356b45;color:#fff;border-radius:18px;padding:15px;font-family:'Pretendard';font-weight:800;font-size:16px;cursor:pointer;margin:16px 0 22px}
-.mixbox{display:none}.mixbox.show{display:block}
-.sec{font-family:'Pretendard';font-weight:800;font-size:15px;margin:6px 0 10px;color:#6c6f62}
-</style></head><body><div class="wrap">
-<div class="top"><div class="pill">BRAVO ENGLISH</div><div class="prog">4세트 · 표현 12개</div></div>
-<h1>직장인 생존영어<br>복습 퀴즈 모음</h1><div class="hand">배운 표현, 진짜 외웠는지 확인!</div>
-<button class="mix" id="mixbtn">🔀 지금까지 배운 표현 랜덤 복습</button>
-<div class="mixbox" id="mixbox"></div>
-<div class="sec">세트별 퀴즈</div><div id="list"></div>
-</div><script>window.SETS=[{"file": "2026-11-08-k.html", "date": "2026-11-08", "id": "K_미국중간선거", "title": "미국 중간선거 뉴스 영어, 회사에서 써먹기", "cards": [{"expr": "landslide", "mean": "압승, 압도적인 결과", "example": "It was a landslide.", "when": "투표·결과가 한쪽으로 쏠릴 때"}, {"expr": "flip", "mean": "뒤집다, 이쪽으로 가져오다", "example": "They flipped seven seats.", "when": "상대 걸 가져왔을 때"}, {"expr": "sweep", "mean": "싹쓸이하다", "example": "They swept the election.", "when": "전부 다 이겼을 때"}]}, {"file": "2026-11-06-c.html", "date": "2026-11-06", "id": "C_업무부탁", "title": "일 부탁할 때 이렇게 말하면 다 도와줘요", "cards": [{"expr": "give me a hand", "mean": "좀 도와주다", "example": "Could you give me a hand?", "when": "가볍게 도움 청할 때"}, {"expr": "Would you mind ~ing?", "mean": "~해주실 수 있을까요?", "example": "Would you mind checking this?", "when": "정중하게 부탁할 때"}, {"expr": "I'd appreciate it if ~", "mean": "~해주시면 감사하겠어요", "example": "I'd appreciate it if you could…", "when": "메일로 공손하게"}]}, {"file": "2026-11-03-b.html", "date": "2026-11-03", "id": "B_회의반대", "title": "회의에서 반대할 때 쓰는 영어", "cards": [{"expr": "push back", "mean": "정중하게 이의를 제기하다", "example": "I'd like to push back a little.", "when": "회의에서 반대할 때"}, {"expr": "play devil's advocate", "mean": "일부러 반대 입장에서 말하다", "example": "Let me play devil's advocate.", "when": "리스크를 짚을 때"}, {"expr": "see your point", "mean": "무슨 말인지 알다 (인정하고 반대)", "example": "I see your point, but…", "when": "부드럽게 반대할 때"}]}, {"file": "2026-11-03-a.html", "date": "2026-11-03", "id": "A_마감독촉", "title": "마감 독촉, 영어로 하면 안 싸워요", "cards": [{"expr": "check in on", "mean": "진행 상황을 확인하다", "example": "Just checking in on the report.", "when": "부담 없이 진행 상황 물을 때"}, {"expr": "friendly reminder", "mean": "가볍게 다시 알려드림", "example": "Just a friendly reminder.", "when": "마감 전 부드럽게 알릴 때"}, {"expr": "follow up on", "mean": "다시 확인하다, 후속 연락하다", "example": "I wanted to follow up on this.", "when": "답이 없을 때"}]}];</script><script>
-const SETS = window.SETS;
-const get = id => JSON.parse(localStorage.getItem('bravo_quiz_' + id) || '{}');
-const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-document.getElementById('list').innerHTML = SETS.map((s, i) => {
-  const g = get(s.id), cards = g.cards || {};
-  const unsure = s.cards.some(c => cards[c.expr] === 'unsure');
-  const st = g.done ? (unsure ? ['unsure', '헷갈림 있음 🤔'] : ['done', `완료 ${g.done.right}/${g.done.total} ✅`]) : ['', '아직 안 풂'];
-  return `<a class="set" href="${s.file}"><div class="row1"><span>${s.date}${i === 0 ? '<span class="new">NEW</span>' : ''}</span>
-    <span class="st ${st[0]}">${st[1]}</span></div><div class="t">${esc(s.title)}</div>
-    <div class="ex">${s.cards.map(c => `<span>${esc(c.expr)}</span>`).join('')}</div></a>`;
-}).join('');
+.best{font-size:12px;border-radius:10px;padding:2px 9px;background:#c9e8cf;color:#2f6b40}
+/* 세트 화면 */
+.seg{display:flex;gap:6px;margin:16px 0 14px;background:#fff;border-radius:16px;padding:5px}
+.seg button{flex:1;border:none;background:none;border-radius:12px;padding:10px;font-family:'Pretendard';font-weight:700;font-size:15px;color:#6c6f62}
+.seg button.on{background:#356b45;color:#fff}
+.dots{display:flex;gap:6px;justify-content:center;margin:4px 0 12px}
+.dots i{width:8px;height:8px;border-radius:50%;background:#d9d4c6}.dots i.on{background:#356b45;width:22px;border-radius:4px}
+.study .expr{font-weight:800;font-size:32px;letter-spacing:-.5px;line-height:1.15}
+.study .mean{font-family:'Pretendard';font-weight:800;font-size:19px;margin-top:6px}
+.study .when{display:inline-block;font-family:'Pretendard';font-size:13px;background:#f6f3ec;border-radius:10px;padding:3px 10px;margin-top:10px}
+.tag{font-family:'Pretendard';font-weight:700;font-size:13px;color:#6c6f62;display:flex;gap:8px;align-items:center;margin-top:16px}
+.tag b{background:#356b45;color:#fff;border-radius:10px;padding:2px 9px;font-size:12px}
+.line{display:flex;gap:10px;align-items:flex-start;margin-top:10px}
+.who{flex:none;width:28px;height:28px;border-radius:50%;background:#f8d9cf;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.line .tx{flex:1;font-size:17px;font-weight:600;line-height:1.35}
+.line .tx .ko{font-weight:400;margin-top:2px}
+.g{color:#2f6b40;font-weight:800;background:linear-gradient(transparent 55%,#c9e8cf 55%)}
+.play{flex:none;border:none;background:#356b45;color:#fff;border-radius:50%;width:34px;height:34px;font-size:13px}
+.nav{display:flex;gap:8px;margin-top:6px}
+.nav button{flex:1;border:none;border-radius:16px;padding:14px;font-family:'Pretendard';font-weight:800;font-size:15px;background:#fff;color:#356b45}
+.nav button.pri{background:#356b45;color:#fff}
+.nav button:disabled{opacity:.4}
+/* 테스트 */
+.bar{height:8px;background:#e4e0d4;border-radius:4px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:#356b45;transition:width .3s}
+.qtype{font-family:'Pretendard';font-weight:800;font-size:13px;color:#c0392b}
+.qtext{font-size:21px;font-weight:700;margin:10px 0 4px;line-height:1.35}
+.qtext .bl{display:inline-block;min-width:80px;border-bottom:3px solid #356b45;text-align:center;color:#2f6b40}
+.qbig{font-family:'Pretendard';font-weight:900;font-size:26px;margin:10px 0 4px}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.opt{border:2px solid #e4e0d4;background:#fbfaf6;border-radius:14px;padding:12px 14px;font-size:16px;font-weight:600;text-align:left;color:#2c3a2e}
+.opt.right{border-color:#356b45;background:#c9e8cf}.opt.wrong{border-color:#c0392b;background:#f8d9cf}
+.fb{font-family:'Pretendard';font-size:14px;margin-top:12px;line-height:1.5;display:flex;gap:8px;align-items:center}
+.result{background:#2f3a2e;color:#fff;border-radius:24px;padding:26px 20px;text-align:center}
+.result .score{font-family:'Pretendard';font-weight:900;font-size:44px;margin:8px 0}
+.result .hand{color:#c9e8cf;font-size:22px}
+.result .exprs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.result .exprs span{background:#fff;color:#2c3a2e;border-radius:12px;padding:5px 11px;font-weight:700;font-size:13px}
+.result .share{font-family:'Pretendard';font-size:13px;opacity:.75;margin-top:12px}
+.miss{margin-top:14px}.miss .card{font-size:15px}
+/* 복습 카드 */
+.flip{perspective:1000px;height:260px;cursor:pointer}
+.inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.flip.open .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+.face.back{transform:rotateY(180deg);background:#356b45;color:#fff}
+.face .bigt{font-family:'Pretendard';font-weight:900;font-size:28px}
+.face.back .bigt{font-family:'Inter';font-weight:800;font-size:30px}
+.face .small{font-size:14px;margin-top:10px;opacity:.85;line-height:1.4}
+.face .from{font-family:'Pretendard';font-size:12px;opacity:.6;margin-top:14px}
+.face .hint{font-family:'Gaegu';font-size:18px;color:#c0392b;margin-top:14px}
+.face .play{background:#fff;color:#356b45;margin-top:14px}
+</style></head>
+<body><div class="wrap" id="app"></div>
+<script>window.SITE={"sets": [{"id": "k", "sid": "K_미국중간선거", "date": "2026-11-08", "title": "미국 중간선거 뉴스 영어, 회사에서 써먹기", "topic": "미국중간선거", "items": [{"expr": "landslide", "mean": "압승, 압도적인 결과", "when": "투표·결과가 한쪽으로 쏠릴 때", "example": "It was a landslide.", "situation": "팀 투표 결과 말할 때", "a": "Which logo did the team pick?", "b": "Option B won by a landslide.", "ko_a": "팀이 어떤 로고 골랐어요?", "ko_b": "B안이 압도적으로 이겼어요.", "a_audio": "a338eca1e7fe075d", "b_audio": "d7126b6ed325697d", "key": "b", "marked": "Option B won by a [[landslide]].", "answer": "landslide"}, {"expr": "flip", "mean": "뒤집다, 이쪽으로 가져오다", "when": "상대 걸 가져왔을 때", "example": "They flipped seven seats.", "situation": "경쟁사 고객을 데려왔을 때", "a": "Any good news this week?", "b": "We flipped their biggest client.", "ko_a": "이번 주 좋은 소식 있어요?", "ko_b": "그쪽 최대 고객사를 우리 쪽으로 가져왔어요.", "a_audio": "6683818304adc8ce", "b_audio": "92cc2de1adb2375e", "key": "b", "marked": "We [[flipped]] their biggest client.", "answer": "flipped"}, {"expr": "sweep", "mean": "싹쓸이하다", "when": "전부 다 이겼을 때", "example": "They swept the election.", "situation": "시상식·평가 결과", "a": "How did the awards go?", "b": "Our team swept all three categories.", "ko_a": "시상식 어땠어요?", "ko_b": "우리 팀이 세 부문 다 휩쓸었어요.", "a_audio": "911b684ac2616953", "b_audio": "e92cdae2c5c57ebf", "key": "b", "marked": "Our team [[swept]] all three categories.", "answer": "swept"}]}, {"id": "c", "sid": "C_업무부탁", "date": "2026-11-06", "title": "일 부탁할 때 이렇게 말하면 다 도와줘요", "topic": "업무부탁", "items": [{"expr": "give me a hand", "mean": "좀 도와주다", "when": "가볍게 도움 청할 때", "example": "Could you give me a hand?", "situation": "자료 정리가 산더미일 때", "a": "Could you give me a hand with these files?", "b": "Sure, what do you need?", "ko_a": "이 파일들 정리 좀 도와줄 수 있어요?", "ko_b": "그럼요, 뭐 하면 돼요?", "a_audio": "6398e148f767902d", "b_audio": "c050004a345e43e0", "key": "a", "marked": "Could you [[give me a hand]] with these files?", "answer": "give me a hand"}, {"expr": "Would you mind ~ing?", "mean": "~해주실 수 있을까요?", "when": "정중하게 부탁할 때", "example": "Would you mind checking this?", "situation": "보고서 검토를 부탁할 때", "a": "Would you mind checking my report?", "b": "Not at all. Send it over.", "ko_a": "제 보고서 검토해주실 수 있을까요?", "ko_b": "그럼요(전혀요). 보내주세요.", "a_audio": "c89324b073c2a9d9", "b_audio": "8347e9b806095c01", "key": "a", "marked": "[[Would you mind]] checking my report?", "answer": "Would you mind"}, {"expr": "I'd appreciate it if ~", "mean": "~해주시면 감사하겠어요", "when": "메일로 공손하게", "example": "I'd appreciate it if you could…", "situation": "다른 팀에 메일로 요청할 때", "a": "I'd appreciate it if you could reply by Friday.", "b": "Of course. I'll get back to you soon.", "ko_a": "금요일까지 회신 주시면 감사하겠습니다.", "ko_b": "물론이죠. 곧 연락드릴게요.", "a_audio": "43e41218a5cfa0a7", "b_audio": "2dc3b730a12bff73", "key": "a", "marked": "[[I'd appreciate it if]] you could reply by Friday.", "answer": "I'd appreciate it if"}]}, {"id": "b", "sid": "B_회의반대", "date": "2026-11-03", "title": "회의에서 반대할 때 쓰는 영어", "topic": "회의반대", "items": [{"expr": "push back", "mean": "정중하게 이의를 제기하다", "when": "회의에서 반대할 때", "example": "I'd like to push back a little.", "situation": "무리한 일정이 나왔을 때", "a": "Let's launch next Monday.", "b": "I'd like to push back a little. We need more testing.", "ko_a": "다음 주 월요일에 런칭하죠.", "ko_b": "조금 다른 의견이에요. 테스트가 더 필요해요.", "a_audio": "86349a02687274df", "b_audio": "35703186fd225c8c", "key": "b", "marked": "I'd like to [[push back]] a little. We need more testing.", "answer": "push back"}, {"expr": "play devil's advocate", "mean": "일부러 반대 입장에서 말하다", "when": "리스크를 짚을 때", "example": "Let me play devil's advocate.", "situation": "다들 찬성하는 분위기일 때", "a": "Everyone loves this idea!", "b": "Let me play devil's advocate. What if it fails?", "ko_a": "다들 이 아이디어 좋아하네요!", "ko_b": "일부러 반대로 말해볼게요. 실패하면요?", "a_audio": "5da7938f459c06b5", "b_audio": "fd8ffd15c5d0961a", "key": "b", "marked": "Let me [[play devil's advocate]]. What if it fails?", "answer": "play devil's advocate"}, {"expr": "see your point", "mean": "무슨 말인지 알다 (인정하고 반대)", "when": "부드럽게 반대할 때", "example": "I see your point, but…", "situation": "상사 의견에 반대할 때", "a": "We should cut the budget in half.", "b": "I see your point, but quality might suffer.", "ko_a": "예산을 반으로 줄여야 해요.", "ko_b": "무슨 말인지는 알겠는데, 품질이 떨어질 수 있어요.", "a_audio": "6edf364d8c2bb4eb", "b_audio": "3b452c0aa1f66e3a", "key": "b", "marked": "I [[see your point]], but quality might suffer.", "answer": "see your point"}]}, {"id": "a", "sid": "A_마감독촉", "date": "2026-11-03", "title": "마감 독촉, 영어로 하면 안 싸워요", "topic": "마감독촉", "items": [{"expr": "check in on", "mean": "진행 상황을 확인하다", "when": "부담 없이 진행 상황 물을 때", "example": "Just checking in on the report.", "situation": "보고서 진행 상황이 궁금할 때", "a": "Hi Mina, just checking in on the Q4 report.", "b": "It's almost done! I'll send it tomorrow.", "ko_a": "미나 씨, 4분기 보고서 어떻게 돼가나요?", "ko_b": "거의 다 했어요! 내일 보낼게요.", "a_audio": "af66adb7431f5b26", "b_audio": "16f1494529440a95", "key": "a", "marked": "Hi Mina, just [[checking in on]] the Q4 report.", "answer": "checking in on"}, {"expr": "friendly reminder", "mean": "가볍게 다시 알려드림", "when": "마감 전 부드럽게 알릴 때", "example": "Just a friendly reminder.", "situation": "마감 이틀 전일 때", "a": "Just a friendly reminder that it's due Friday.", "b": "Thanks, it's on my calendar.", "ko_a": "금요일 마감인 거 가볍게 알려드려요.", "ko_b": "감사해요, 캘린더에 적어뒀어요.", "a_audio": "1a14db4a8004c1c6", "b_audio": "4e469f3c6a21d908", "key": "a", "marked": "Just a [[friendly reminder]] that it's due Friday.", "answer": "friendly reminder"}, {"expr": "follow up on", "mean": "다시 확인하다, 후속 연락하다", "when": "답이 없을 때", "example": "I wanted to follow up on this.", "situation": "메일 답장이 3일째 없을 때", "a": "I wanted to follow up on my email from Monday.", "b": "Sorry! It slipped through the cracks.", "ko_a": "월요일에 보낸 메일 다시 확인차 연락드려요.", "ko_b": "죄송해요! 깜빡 놓쳤어요.", "a_audio": "4d3e7d4a2da03fb0", "b_audio": "1f69591e97962301", "key": "a", "marked": "I wanted to [[follow up on]] my email from Monday.", "answer": "follow up on"}]}]};</script><script>
+const S = window.SITE;
+const $ = s => document.querySelector(s);
+const app = $('#app');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const mark = s => esc(s).replace(/\[\[(.+?)\]\]/g, '<span class="g">$1</span>');
+const BEST = 'bravo_best_';
+let player = null;
+function play(h) { if (!h) return; if (player) player.pause(); player = new Audio('audio/' + h + '.mp3'); player.play().catch(() => {}); }
+const pbtn = h => h ? `<button class="play" data-a="${h}" aria-label="듣기">▶</button>` : '';
+const setById = id => S.sets.find(s => s.id === id);
+const allItems = () => S.sets.flatMap(s => s.items.map((it, i) => ({...it, set: s, i})));
+const hl = (s, q) => { const e = esc(s); if (!q) return e; const i = e.toLowerCase().indexOf(esc(q).toLowerCase());
+  return i < 0 ? e : e.slice(0, i) + '<mark>' + e.slice(i, i + esc(q).length) + '</mark>' + e.slice(i + esc(q).length); };
+const go = h => { location.hash = h; };
+const topbar = (left, right = '') => `<div class="top">${left}<div class="meta">${right}</div></div>`;
+const homeBtn = '<button class="back" data-go="">← 홈</button>';
 
-function mix() {
-  const all = SETS.flatMap(s => s.cards.map(c => ({...c, id: s.id})));
-  const pick = all.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).slice(0, 10).map(v => v[1]);
-  const box = document.getElementById('mixbox');
-  box.innerHTML = '<div class="sec">랜덤 복습 ' + pick.length + '장 · 탭해서 뒤집기</div>' + pick.map(c => {
-    const r = (get(c.id).cards || {})[c.expr];
-    return `<div class="flip"><div class="inner">
-      <div class="face"><div class="big">${esc(c.mean)}</div><div class="small">${esc(c.when)}</div><div class="hint">탭해서 뒤집기</div></div>
-      <div class="face back"><div class="big">${esc(c.expr)}</div><div class="small">${esc(c.example)}</div></div></div></div>
-      <div class="rate" data-id="${c.id}" data-expr="${esc(c.expr)}">
-      <button class="got ${r === 'got' ? 'sel' : ''}">외웠음 ✅</button><button class="unsure ${r === 'unsure' ? 'sel' : ''}">헷갈림 🤔</button></div>`;
-  }).join('');
-  box.classList.add('show');
-  box.scrollIntoView({behavior: 'smooth'});
+/* ---------- 홈 ---------- */
+function home() {
+  const n = allItems().length;
+  app.innerHTML = topbar('<a class="pill" href="#">BRAVO ENGLISH</a>', `${S.sets.length}세트 · 표현 ${n}개`) +
+    `<h1>직장인 생존영어<br>예습 · 복습 · 테스트</h1><div class="hand">인스타에서 배운 표현, 여기서 끝내기!</div>
+    <div class="search"><span class="ic">🔍</span><input id="q" type="search" placeholder="표현·뜻·상황 검색 (예: 독촉, follow up)" autocomplete="off"></div>
+    <div class="chips" id="chips">${['이메일', '회의', '부탁', '사과', '연말', 'reminder'].map(c => `<button class="chip" data-q="${c}">${c}</button>`).join('')}</div>
+    <div id="hits"></div>
+    <div id="homebody">
+      <div class="big2">
+        <button class="bigbtn" data-go="review"><b>🔀 랜덤 복습</b><span>배운 표현 섞어서 카드로</span></button>
+        <button class="bigbtn alt" data-go="rtest"><b>📝 랜덤 테스트</b><span>전체 세트에서 10문제</span></button>
+      </div>
+      <div class="sec">세트별 예습 → 테스트</div>
+      ${S.sets.map((s, k) => { const b = localStorage.getItem(BEST + s.id);
+        return `<button class="set" data-go="set=${s.id}"><div class="r1"><span>${s.date}${k === 0 ? '<span class="new">NEW</span>' : ''}</span>
+        ${b ? `<span class="best">최고 ${b}</span>` : ''}</div><div class="t">${esc(s.title)}</div>
+        <div class="ex">${s.items.map(i => `<span>${esc(i.expr)}</span>`).join('')}</div></button>`; }).join('')}
+    </div>`;
+  const q = $('#q');
+  q.oninput = () => search(q.value.trim());
+  const last = sessionStorage.getItem('bravo_q') || '';
+  if (last) { q.value = last; search(last); }
 }
-document.getElementById('mixbtn').onclick = mix;
-document.addEventListener('click', e => {
-  const f = e.target.closest('.flip'); if (f) return f.classList.toggle('open');
-  const r = e.target.closest('.rate');
-  if (r && e.target.tagName === 'BUTTON') {
-    const key = 'bravo_quiz_' + r.dataset.id, g = get(r.dataset.id);
-    g.cards = g.cards || {}; g.cards[r.dataset.expr] = e.target.classList.contains('got') ? 'got' : 'unsure';
-    localStorage.setItem(key, JSON.stringify(g));
-    r.querySelectorAll('button').forEach(b => b.classList.toggle('sel', b === e.target));
+
+function search(q) {
+  sessionStorage.setItem('bravo_q', q);
+  $('#homebody').style.display = q ? 'none' : '';
+  $('#chips').style.display = q ? 'none' : '';
+  if (!q) { $('#hits').innerHTML = ''; return; }
+  const ql = q.toLowerCase();
+  const hits = allItems().filter(it => [it.expr, it.mean, it.when, it.situation, it.a, it.b, it.ko_a, it.ko_b, it.set.title, it.set.topic]
+    .some(f => f.toLowerCase().includes(ql)));
+  $('#hits').innerHTML = `<div class="sec">검색 결과 ${hits.length}개</div>` + (hits.length ? hits.map(it => {
+    const line = it.key === 'b' ? it.b : it.a;
+    return `<button class="hit" data-go="set=${it.set.id}&i=${it.i}"><div class="e">${hl(it.expr, q)}</div>
+    <div class="m">${hl(it.mean, q)} · <span class="ko">${hl(it.when, q)}</span></div>
+    <div class="s">${hl(line, q)}<br>${esc(it.set.date)} · ${hl(it.set.title, q)}</div></button>`; }).join('')
+    : '<div class="empty">아직 그 표현은 없어요. 다른 단어로 찾아볼까요?</div>');
+}
+
+/* ---------- 세트: 예습 ---------- */
+function study(s, i) {
+  const it = s.items[i], n = s.items.length;
+  const lines = [['A', it.a, it.ko_a, it.a_audio, it.key === 'a'], ['B', it.b, it.ko_b, it.b_audio, it.key === 'b']];
+  app.innerHTML = topbar(homeBtn, s.date) + `<h1>${esc(s.title)}</h1>` + seg(s, 'study') +
+    `<div class="dots">${s.items.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div>
+    <div class="card study"><div class="sub">표현 ${i + 1} / ${n}</div>
+      <div class="expr">${esc(it.expr)}</div><div class="mean">${esc(it.mean)}</div><div class="when">${esc(it.when)}</div>
+      <div class="tag"><b>실전</b>${esc(it.situation)}</div>
+      ${lines.map(([w, en, ko, au, hot]) => `<div class="line"><div class="who">${w}</div>
+        <div class="tx">${hot ? esc(en).replace(esc(it.answer), `<span class="g">${esc(it.answer)}</span>`) : esc(en)}<div class="ko">${esc(ko)}</div></div>${pbtn(au)}</div>`).join('')}
+    </div>
+    <div class="nav"><button data-go="set=${s.id}&i=${i - 1}" ${i === 0 ? 'disabled' : ''}>← 이전</button>
+    ${i < n - 1 ? `<button class="pri" data-go="set=${s.id}&i=${i + 1}">다음 표현 →</button>`
+                : `<button class="pri" data-go="set=${s.id}&mode=test">테스트 보기 📝</button>`}</div>`;
+}
+const seg = (s, m) => `<div class="seg"><button class="${m === 'study' ? 'on' : ''}" data-go="set=${s.id}">📖 예습</button>
+  <button class="${m === 'test' ? 'on' : ''}" data-go="set=${s.id}&mode=test">📝 테스트</button></div>`;
+
+/* ---------- 테스트 (세트 9문제 / 랜덤 10문제) ---------- */
+function makeQuestions(items, pool) {
+  const qs = [];
+  items.forEach(it => {
+    const others = n => shuffle(pool.filter(o => o.expr !== it.expr)).slice(0, n);
+    // ① 빈칸
+    qs.push({type: '빈칸 채우기', html: `<div class="qtext">${esc(it.marked).replace(/\[\[.+?\]\]/, '<span class="bl">?</span>')}</div>
+      <div class="ko">${esc(it.key === 'b' ? it.ko_b : it.ko_a)}</div>`,
+      answer: it.answer, options: shuffle([it.answer, ...others(2).map(o => o.answer)]), it});
+    // ② 대화 이어가기
+    const other = it.key === 'b' ? it.a : it.b, otherKo = it.key === 'b' ? it.ko_a : it.ko_b;
+    const mine = it.key === 'b' ? it.b : it.a;
+    qs.push({type: it.key === 'b' ? '대화: 내 답장은?' : '대화: 내가 먼저 한 말은?',
+      html: `<div class="line"><div class="who">${it.key === 'b' ? 'A' : 'B'}</div><div class="tx">${esc(other)}<div class="ko">${esc(otherKo)}</div></div>
+      ${pbtn(it.key === 'b' ? it.a_audio : it.b_audio)}</div>`,
+      answer: mine, options: shuffle([mine, ...others(2).map(o => o.key === 'b' ? o.b : o.a)]), it});
+    // ③ 뜻 → 표현
+    qs.push({type: '뜻 보고 표현 고르기', html: `<div class="qbig">${esc(it.mean)}</div><div class="ko">${esc(it.when)}</div>`,
+      answer: it.expr, options: shuffle([it.expr, ...others(2).map(o => o.expr)]), it});
+  });
+  return qs;
+}
+
+let T = null;
+function startTest(s) {
+  if (s) { const qs = makeQuestions(shuffle(s.items), s.items), order = q => qs.indexOf(q) % 3;  // 빈칸 → 대화 → 뜻 순서로 묶기
+    T = {s, qs: qs.map(q => [order(q), Math.random(), q]).sort((x, y) => x[0] - y[0] || x[1] - y[1]).map(v => v[2]), k: 0, right: 0, miss: []}; }
+  else {
+    const pick = shuffle(allItems()).slice(0, 10);
+    T = {s: null, qs: pick.map(it => shuffle(makeQuestions([it], allItems()))[0]), k: 0, right: 0, miss: []};
   }
+  renderQ();
+}
+function renderQ() {
+  const {s, qs, k} = T;
+  const head = topbar(homeBtn, s ? s.date : '랜덤 테스트') + `<h1>${s ? esc(s.title) : '전체 세트 랜덤 테스트'}</h1>` + (s ? seg(s, 'test') : '');
+  if (k >= qs.length) return result(head);
+  const q = qs[k];
+  app.innerHTML = head + `<div class="meta">${k + 1} / ${qs.length}</div><div class="bar"><i style="width:${k / qs.length * 100}%"></i></div>
+    <div class="card"><div class="qtype">${q.type}</div>${q.html}
+    <div class="opts">${q.options.map((o, j) => `<button class="opt" data-o="${j}">${esc(o)}</button>`).join('')}</div><div id="fb"></div></div>
+    <div class="nav" id="next" style="display:none"><button class="pri" data-next>${k === qs.length - 1 ? '결과 보기' : '다음 문제 →'}</button></div>`;
+}
+function answer(j) {
+  const q = T.qs[T.k]; if (q.done) return; q.done = true;
+  const ok = q.options[j] === q.answer;
+  if (ok) T.right++; else T.miss.push(q);
+  document.querySelectorAll('.opt').forEach((b, x) => { b.disabled = true;
+    if (q.options[x] === q.answer) b.classList.add('right'); else if (x === j) b.classList.add('wrong'); });
+  const it = q.it, line = it.key === 'b' ? it.b : it.a, au = it.key === 'b' ? it.b_audio : it.a_audio;
+  $('#fb').innerHTML = `<div class="fb"><div>${ok ? '<b style="color:#2f6b40">정답!</b>' : '<b style="color:#c0392b">아쉬워요.</b>'}
+    <b>${esc(it.expr)}</b> · ${esc(it.mean)}<br><span class="ko">${esc(line)}</span></div>${pbtn(au)}</div>`;
+  if (ok) play(au);
+  $('#next').style.display = '';
+}
+function result(head) {
+  const {s, qs, right, miss} = T, total = qs.length;
+  if (s) { const prev = localStorage.getItem(BEST + s.id); const pr = prev ? +prev.split('/')[0] : -1;
+    if (right > pr) localStorage.setItem(BEST + s.id, `${right}/${total}`); }
+  const msg = right === total ? 'perfect!' : right >= total * .7 ? 'almost there!' : 'one more time!';
+  const exprs = s ? s.items.map(i => i.expr) : [...new Set(qs.map(q => q.it.expr))].slice(0, 6);
+  app.innerHTML = head + `<div class="result"><div class="pill" style="display:inline-block">BRAVO ENGLISH</div>
+    <div style="margin-top:12px">${s ? esc(s.title) : '랜덤 테스트'}</div><div class="score">${right} / ${total}</div>
+    <div class="exprs">${exprs.map(e => `<span>${esc(e)}</span>`).join('')}</div><div class="hand">${msg}</div>
+    <div class="share">📸 캡처해서 스토리에 올리고 계정 태그해줘요!</div></div>
+    ${miss.length ? `<div class="sec">틀린 문제 다시 보기</div><div class="miss">${miss.map(q => `<div class="card"><b>${esc(q.it.expr)}</b> · ${esc(q.it.mean)}
+      <div class="ko" style="margin-top:4px">${esc(q.it.key === 'b' ? q.it.b : q.it.a)}</div></div>`).join('')}</div>` : ''}
+    <div class="nav" style="margin-top:14px">${s ? `<button data-go="set=${s.id}">📖 다시 예습</button>` : `<button data-go="review">🔀 랜덤 복습</button>`}
+    <button class="pri" data-retest>다시 테스트</button></div>`;
+}
+
+/* ---------- 랜덤 복습 ---------- */
+let R = null;
+function review(k) {
+  if (!R || k === 0 && !R.keep) R = {list: shuffle(allItems()).slice(0, 10)};
+  R.keep = false;
+  const it = R.list[k], n = R.list.length;
+  const line = it.key === 'b' ? it.b : it.a, au = it.key === 'b' ? it.b_audio : it.a_audio;
+  app.innerHTML = topbar(homeBtn, `${k + 1} / ${n}`) + `<h1>랜덤 복습</h1><div class="hand">뜻 보고 떠올린 다음, 카드를 탭!</div>
+    <div class="bar"><i style="width:${(k + 1) / n * 100}%"></i></div>
+    <div class="flip" id="flip"><div class="inner">
+      <div class="face"><div class="bigt">${esc(it.mean)}</div><div class="small">${esc(it.when)}</div><div class="hint">탭해서 뒤집기</div></div>
+      <div class="face back"><div class="bigt">${esc(it.expr)}</div><div class="small">${esc(line)}</div>${pbtn(au)}
+        <div class="from">${esc(it.set.date)} · ${esc(it.set.title)}</div></div></div></div>
+    <div class="nav" style="margin-top:14px"><button data-rv="${k - 1}" ${k === 0 ? 'disabled' : ''}>← 이전</button>
+    ${k < n - 1 ? `<button class="pri" data-rv="${k + 1}">다음 카드 →</button>` : `<button class="pri" data-go="rtest">랜덤 테스트 📝</button>`}</div>
+    <div class="nav"><button data-go="set=${it.set.id}&i=${it.i}">이 세트 예습하러 가기</button></div>`;
+}
+
+/* ---------- 라우팅 ---------- */
+function route() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  window.scrollTo(0, 0);
+  if (p.has('review')) return review(0);
+  if (p.has('rtest')) return startTest(null);
+  const s = p.get('set') && setById(p.get('set'));
+  if (s) return p.get('mode') === 'test' ? startTest(s) : study(s, Math.min(Math.max(+p.get('i') || 0, 0), s.items.length - 1));
+  home();
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('button,a'); if (!t) return;
+  if (t.dataset.a !== undefined) { e.stopPropagation(); return play(t.dataset.a); }
+  if (t.dataset.q !== undefined) { $('#q').value = t.dataset.q; return search(t.dataset.q); }
+  if (t.dataset.go !== undefined) { if (t.dataset.go === '') sessionStorage.removeItem('bravo_q'); return go(t.dataset.go); }
+  if (t.dataset.o !== undefined) return answer(+t.dataset.o);
+  if (t.dataset.next !== undefined) { T.k++; window.scrollTo(0, 0); return renderQ(); }
+  if (t.dataset.retest !== undefined) return startTest(T.s);
+  if (t.dataset.rv !== undefined) { R.keep = true; return review(+t.dataset.rv); }
 });
+document.addEventListener('click', e => { const f = e.target.closest('#flip'); if (f && !e.target.closest('button')) f.classList.toggle('open'); });
+window.addEventListener('hashchange', route);
+route();
 </script></body></html>
